@@ -1,0 +1,45 @@
+<AppLockerPolicy Version="1">
+  <RuleCollection Type="Exe" EnforcementMode="AuditOnly">
+    <FilePathRule Id="4b6a2f6e-1d2a-4c1e-9a58-0d0f8c1a0001" Name="Kiosk application" Description="Diagnostic application install folder" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%PROGRAMFILES%\KioskAdmin\*" />
+      </Conditions>
+    </FilePathRule>
+    <FilePathRule Id="4b6a2f6e-1d2a-4c1e-9a58-0d0f8c1a0002" Name="Windows system binaries" Description="Required for the OS to function" UserOrGroupSid="S-1-1-0" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="%WINDIR%\*" />
+      </Conditions>
+      <Exceptions>
+        <FilePathCondition Path="%WINDIR%\Temp\*" />
+        <FilePathCondition Path="%WINDIR%\Tasks\*" />
+        <FilePathCondition Path="%WINDIR%\System32\cmd.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\WindowsPowerShell\v1.0\powershell_ise.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\mmc.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\regedit.exe" />
+        <FilePathCondition Path="%WINDIR%\regedit.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\control.exe" />
+        <FilePathCondition Path="%WINDIR%\System32\mstsc.exe" />
+      </Exceptions>
+    </FilePathRule>
+    <FilePathRule Id="4b6a2f6e-1d2a-4c1e-9a58-0d0f8c1a0003" Name="Administrators run everything" Description="Maintenance account keeps full access" UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Script" EnforcementMode="AuditOnly">
+    <FilePathRule Id="4b6a2f6e-1d2a-4c1e-9a58-0d0f8c1a0004" Name="Administrators run scripts" Description="" UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+  <RuleCollection Type="Msi" EnforcementMode="AuditOnly">
+    <FilePathRule Id="4b6a2f6e-1d2a-4c1e-9a58-0d0f8c1a0005" Name="Administrators install packages" Description="" UserOrGroupSid="S-1-5-32-544" Action="Allow">
+      <Conditions>
+        <FilePathCondition Path="*" />
+      </Conditions>
+    </FilePathRule>
+  </RuleCollection>
+</AppLockerPolicy>
